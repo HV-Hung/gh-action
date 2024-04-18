@@ -9,7 +9,7 @@ jobs:
     steps:
     - name: Restore cached
       id: restore-cache
-      uses: actions/cache/save@v4
+      uses: actions/cache/restore@v4
       with:
         path: cache-dir
         key: ${{ runner.os }}-cache
