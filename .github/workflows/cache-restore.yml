@@ -9,7 +9,7 @@ jobs:
     steps:
     - name: Restore cached Primes
       id: cache-file
-      uses: actions/cache/restore@v4
+      uses: actions/cache@v4
       with:
         path: prime-numbers
         key: ${{ runner.os }}-primes
