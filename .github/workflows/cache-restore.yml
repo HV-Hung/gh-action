@@ -14,8 +14,8 @@ jobs:
         path: prime-numbers
         key: ${{ runner.os }}-primes
 
-    - name: Generate Prime Numbers
-      if: steps.cache-primes.outputs.cache-hit != 'true'
-      run: echo "No cache hit"
+    - name: Echo Cache Hit
+      run: echo ${{ steps.cache-file.outputs.cache-hit }}
+      
     - name: Generate Prime Numbers
       run: cat prime-numbers/primes.txt
