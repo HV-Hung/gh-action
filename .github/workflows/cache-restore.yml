@@ -12,10 +12,10 @@ jobs:
       uses: actions/cache@v4
       with:
         path: prime-numbers
-        key: ${{ runner.os }}-primes
+        key: ${{ runner.os }}-primes-1
 
     - name: Echo Cache Hit
       run: echo ${{ steps.cache-file.outputs.cache-hit }}
-      
+
     - name: Generate Prime Numbers
       run: cat prime-numbers/primes.txt
