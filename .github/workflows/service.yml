@@ -1,4 +1,4 @@
-name: Main workflow
+name: Service container
 on: workflow_dispatch
 jobs:
   
