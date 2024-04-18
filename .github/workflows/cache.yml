@@ -13,6 +13,8 @@ jobs:
       with:
         path: cache-dir
         key: ${{ runner.os }}-cache
+    - name: echo cache hit
+      run: echo ${{ steps.restore-cache.outputs.cache-hit }}
     - name: generate cache files
       if : steps.restore-cache.outputs.cache-hit != 'true'
       run: |
