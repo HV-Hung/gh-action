@@ -1,9 +1,14 @@
 name: Main workflow
 on: workflow_dispatch
 jobs:
-  echo_information:
+  
+  runner-job:
     runs-on: ubuntu-latest
+    services:
+      web-service:
+        image: hung6876/my-image
+        ports:
+          - 80:80
     steps:
-    - name: Echo information
-      run: echo "Hello, world!"
-   
+      - name: curl_web_service
+        run: curl http://localhost:80
