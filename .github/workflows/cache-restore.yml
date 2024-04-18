@@ -1,4 +1,4 @@
-name: Caching
+name: Caching restore
 
 on: workflow_dispatch
 
@@ -18,5 +18,4 @@ jobs:
       if: steps.cache-primes.outputs.cache-hit != 'true'
       run: echo "No cache hit"
     - name: Generate Prime Numbers
-      if: steps.cache-primes.outputs.cache-hit == 'true'
       run: cat prime-numbers/primes.txt
