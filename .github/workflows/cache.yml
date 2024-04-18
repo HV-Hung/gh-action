@@ -7,23 +7,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: generate files
-      run: |
-        mkdir -p prime-numbers
-        echo "Generating prime numbers"
-        for i in {1..100}; do
-          echo $i >> prime-numbers/primes.txt
-        done
-    - name: Cache file
-      id: cache-file
-      uses: actions/cache@v4
+    - name: Restore cached
+      id: restore-cache
+      uses: actions/cache/save@v4
       with:
-        path: prime-numbers
-        key: ${{ runner.os }}-primes
-
-    - name: Generate Prime Numbers
-      if: steps.cache-primes.outputs.cache-hit != 'true'
-      run: cat prime-numbers/primes.txt
+        path: cache-dir
+        key: ${{ runner.os }}-cache
+    - name: generate cache files
+      if : steps.restore-cache.outputs.cache-hit != 'true'
+      run: |
+        mkdir -p cache-dir
+        echo "Generating cache file..."
+        sleep 60
+        for i in {1..100}; do
+          echo $i >> cache-dir/cache.txt
+        done
+   
 
     - name: Use Prime Numbers
-      run: cat prime-numbers/primes.txt
+      run: cat cache-dir/cache.txt
+    
+    - name: Cache generated file
+      if : steps.restore-cache.outputs.cache-hit != 'true'
+      id: cache-file
+      uses: actions/cache/save@v4
+      with:
+        path: cache-dir
+        key: ${{ runner.os }}-cache
