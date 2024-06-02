@@ -4,6 +4,6 @@ jobs:
   runner-job:
     runs-on: ubuntu-latest
     steps:
-      - uses: HV-Hung/js-action@main
+      - uses: HV-Hung/js-action@v1
         with:
           who-to-greet: 'Mona the Octocat'
