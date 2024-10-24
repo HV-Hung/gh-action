@@ -1,0 +1,13 @@
+name: Execute Script
+on: workflow_dispatch
+jobs:
+  
+  runner-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Execute Script
+        run: |
+          ./.github/scripts/execute.sh
