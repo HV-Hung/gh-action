@@ -10,4 +10,4 @@ jobs:
 
       - name: Execute Script
         run: |
-          ./.github/scripts/execute.sh
+          ./.github/scripts/test.sh
