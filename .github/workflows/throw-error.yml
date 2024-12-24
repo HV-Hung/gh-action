@@ -1,0 +1,10 @@
+name: Throw error
+on: workflow_dispatch
+jobs:
+  
+  runner-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Execute Script
+        run: |
+          cp test.txt /tmp/test.txt || echo "hello"
