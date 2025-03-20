@@ -15,3 +15,5 @@ jobs:
         run: |
           echo "Listing all files..."
           ls
+          echo "listing inside test_checkout"
+          ls test_checkout/
