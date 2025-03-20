@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           sparse-checkout: |
-            !/*
+            !**
             test_checkout/
       - name: List Dirs
         run: |
