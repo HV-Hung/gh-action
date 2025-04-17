@@ -1,0 +1,9 @@
+name: "Build"
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    uses: HV-Hung/oncall-workflow/.github/workflows/build.yml
+  
