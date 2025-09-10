@@ -1,0 +1,13 @@
+name: Use custom Action
+on: workflow_dispatch
+jobs:
+  
+  runner-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Action 1
+        uses: HV-Hung/test-action/action1@main
+      - name: Action 2
+        uses: HV-Hung/test-action/action2@main
+      - name: Action 3
+        uses: HV-Hung/test-action/action3@main
