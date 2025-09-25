@@ -1,5 +1,10 @@
 name: Test checkout
-on: push
+on: 
+  push:
+  pull_request:
+    branches:
+      - main
+
 jobs:
   
   runner-job:
