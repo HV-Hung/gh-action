@@ -1,0 +1,54 @@
+name: Test dispatch
+
+on:
+  workflow_dispatch:
+
+jobs:
+  dispatch:
+    name: Dispatch Echo Vars workflow
+    runs-on: ubuntu-22.04
+    permissions: 
+      actions: write
+    steps:
+      - name: Dispatch Echo Vars workflow
+        env:
+          # Requires a token with "Actions: write" permission on the E2E Cross Services repo
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          owner="${{ github.repository_owner }}"
+          workflow_file="echo-vars.yml"
+          target_repo="$owner/gh-action"
+
+          echo "Triggering '$workflow_file'..."
+          gh workflow run "$workflow_file" \
+            --repo "$target_repo" \
+            --ref main 
+
+          echo "Resolving the triggered workflow run id..."
+          run_id="$(gh run list \
+            --workflow "$workflow_file" \
+            --repo "$target_repo" \
+            --branch main \
+            --limit 1 \
+            --json databaseId \
+            --jq '.[0].databaseId')"
+
+          if [[ -z "${run_id}" ]]; then
+            echo "Unable to resolve the triggered workflow run id." >&2
+            exit 1
+          fi
+
+          run_url="https://github.com/$target_repo/actions/runs/$run_id"
+
+          echo "Trigger successful! Follow progress at $run_url"
+
+          {
+            echo "### Cross Services E2E Trigger"
+            echo ""
+            echo "- Workflow: \`$workflow_file\`"
+            echo "- Target repo: \`$target_repo\`"
+            echo "- Triggered run: [$run_id]($run_url)"
+          } >> "${GITHUB_STEP_SUMMARY}"
