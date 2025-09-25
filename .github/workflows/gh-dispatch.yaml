@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-22.04
     permissions: 
       actions: write
+      contents: read
     steps:
       - name: Dispatch Echo Vars workflow
         env:
