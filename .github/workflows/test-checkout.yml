@@ -1,19 +1,13 @@
-name: Echo Variables
+name: Test checkout
 on: push
 jobs:
   
   runner-job:
     runs-on: ubuntu-latest
     steps:
-    
-        
-      - uses: actions/checkout@v4
-        with:
-          sparse-checkout: test_checkout
-          sparse-checkout-cone-mode: false
-      - name: List Dirs
+      - uses: actions/checkout@v5
+      - name: Git Log
         run: |
-          echo "Listing all files..."
-          ls
-          echo "listing inside test_checkout"
-          ls test_checkout/
+          git log
+      - name: List all file
+        run: ls ** -a
