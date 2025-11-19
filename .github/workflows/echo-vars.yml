@@ -3,7 +3,7 @@ on: workflow_dispatch
 jobs:
   
   runner-job:
-    runs-on: self-hosted
+    runs-on: arc-runner-set
     steps:
       - name: echo vars
         run: |
@@ -19,4 +19,5 @@ jobs:
           echo "github.ref: ${{ github.ref }}"
           echo "github.ref_name: ${{ github.ref_name }}"
           echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+
 
