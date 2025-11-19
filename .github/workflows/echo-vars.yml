@@ -19,5 +19,7 @@ jobs:
           echo "github.ref: ${{ github.ref }}"
           echo "github.ref_name: ${{ github.ref_name }}"
           echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+          sleep 180
+
 
 
